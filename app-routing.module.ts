@@ -4,6 +4,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { PostListComponent } from "./posts/post-list/post-list.component";
 import { AddPostComponent } from "./posts/add-post/add-post.component";
+import { EditPostComponent } from "./posts/edit-post/edit-post.component";
 
 const routes: Routes = [
   {
@@ -17,7 +18,10 @@ const routes: Routes = [
   {
     path: "posts",
     component: PostListComponent,
-    children: [{ path: "add", component: AddPostComponent }],
+    children: [
+      { path: "add", component: AddPostComponent },
+      { path: "edit/:id", component: EditPostComponent },
+    ],
   },
 ];
 
