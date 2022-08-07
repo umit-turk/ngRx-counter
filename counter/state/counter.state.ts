@@ -1,8 +1,10 @@
 export interface CounterState {
-  counter:number
+  counter:number;
+  name: string;
 }
 
 
 export const initialState: CounterState = {
   counter: 0,
+  name: 'Umit Yasar Turk',
 }
