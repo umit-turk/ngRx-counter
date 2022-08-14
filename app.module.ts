@@ -14,6 +14,7 @@ import { HeaderComponent } from "./shared/components/header/header.component";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { environment } from "../environments/environment";
 import { EffectsModule } from '@ngrx/effects';
+import { LoadingSpinnerComponent } from './shared/components/loading-spinner/loading-spinner.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { EffectsModule } from '@ngrx/effects';
 
     HomeComponent,
     HeaderComponent,
+    LoadingSpinnerComponent,
 
   ],
   imports: [
@@ -31,7 +33,7 @@ import { EffectsModule } from '@ngrx/effects';
     HttpClientModule,
     FormsModule,
     EffectsModule.forRoot([]),
-    StoreModule.forRoot({}),
+    StoreModule.forRoot(appReducer),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
