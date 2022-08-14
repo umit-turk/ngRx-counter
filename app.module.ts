@@ -15,6 +15,7 @@ import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { environment } from "../environments/environment";
 import { EffectsModule } from '@ngrx/effects';
 import { LoadingSpinnerComponent } from './shared/components/loading-spinner/loading-spinner.component';
+import { AuthEffects } from './auth/state/auth.effects';
 
 
 @NgModule({
@@ -32,7 +33,7 @@ import { LoadingSpinnerComponent } from './shared/components/loading-spinner/loa
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([AuthEffects]),
     StoreModule.forRoot(appReducer),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
