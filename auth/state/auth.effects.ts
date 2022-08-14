@@ -1,7 +1,8 @@
+import { Router } from '@angular/router';
 import { loginStart, loginSuccess } from "./auth.actions";
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { catchError, exhaustMap, map, of } from "rxjs";
+import { catchError, exhaustMap, map, of, tap } from "rxjs";
 import { AuthService } from "src/app/services/auth.service";
 import { Store } from "@ngrx/store";
 import { AppState } from "src/app/store/app.state";
@@ -12,7 +13,8 @@ export class AuthEffects {
   constructor(
     private actions$: Actions,
     private authService: AuthService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private router: Router
   ) {}
 
   login$ = createEffect(() => {
@@ -30,10 +32,15 @@ export class AuthEffects {
             this.store.dispatch(setLoadingSpinner({status: false}))
             const errorMessage = this.authService.getErrorMessage(error.error.error.message);
             return of(setErrorMessage({message: errorMessage}));
-
           })
         );
       })
     );
   });
+
+  loginRedirect$ = createEffect(() => {
+    return this.actions$.pipe(ofType(loginSuccess), tap(action => {
+      this.router.navigate(['/'])
+    }))
+  }, {dispatch:false})
 }
