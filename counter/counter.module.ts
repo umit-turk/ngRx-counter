@@ -10,6 +10,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { counterReducer } from "./state/counter.reducer";
+import { SinglePostComponent } from './posts/single-post/single-post.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,7 @@ const routes: Routes = [
     CounterOutputComponent,
     CounterButtonsComponent,
     CustomCounterInputComponent,
+    SinglePostComponent,
   ],
   imports: [
     CommonModule,
